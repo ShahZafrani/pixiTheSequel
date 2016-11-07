@@ -70,6 +70,41 @@ right.release = function() {
     ship.vx = 0;
   }
 };
+
+up.press = function() {
+
+  //Change the ship's velocity when the key is pressed
+  ship.vx = 0;
+  ship.vy = -5;
+};
+
+//Left arrow key `release` method
+up.release = function() {
+
+  //If the left arrow has been released, and the right arrow isn't down,
+  //and the ship isn't moving vertically:
+  //Stop the ship
+  if (!down.isDown && ship.vx === 0) {
+    ship.vy = 0;
+  }
+};
+down.press = function() {
+
+  //Change the ship's velocity when the key is pressed
+  ship.vx = 0;
+  ship.vy = 5;
+};
+
+//Left arrow key `release` method
+down.release = function() {
+
+  //If the left arrow has been released, and the right arrow isn't down,
+  //and the ship isn't moving vertically:
+  //Stop the ship
+  if (!up.isDown && ship.vx === 0) {
+    ship.vy = 0;
+  }
+};
 }
 
 console.log(setup);
