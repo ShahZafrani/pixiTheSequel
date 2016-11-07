@@ -126,3 +126,4 @@ function updateShipPosition(){
   ship.x += ship.vx;
   ship.y += ship.vy;
 }
+//dummy line for testing
