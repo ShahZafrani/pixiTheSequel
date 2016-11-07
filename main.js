@@ -53,6 +53,23 @@ left.release = function() {
     ship.vx = 0;
   }
 };
+right.press = function() {
+
+  //Change the ship's velocity when the key is pressed
+  ship.vx = 5;
+  ship.vy = 0;
+};
+
+//Left arrow key `release` method
+right.release = function() {
+
+  //If the left arrow has been released, and the right arrow isn't down,
+  //and the ship isn't moving vertically:
+  //Stop the ship
+  if (!left.isDown && ship.vy === 0) {
+    ship.vx = 0;
+  }
+};
 }
 
 console.log(setup);
@@ -65,7 +82,12 @@ function gameLoop(){
 }
 function play(){
   //Capture the keyboard arrow keys
+  updateShip();
+}
+function updateShip(){
+  updateShipPosition();
+}
+function updateShipPosition(){
   ship.x += ship.vx;
-    ship.y += ship.vy;
-
+  ship.y += ship.vy;
 }
