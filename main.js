@@ -21,20 +21,23 @@ renderer.render(stage);
 
 //state
 loader
-  .add('images/ship4.gif')
+  .add('images/spritesheet.json')
   .load(setup);
-var state;
+var state, id;
 
 
 function setup(){
 //create sprite stuff
-ship = new Sprite(resources['images/ship4.gif'].texture);
+id = PIXI.loader.resources['images/spritesheet.json'].textures;
+ship = new Sprite(id['ship4.gif']);
 stage.addChild(ship);
 renderer.render(stage);
 ship.vx = 0;
 ship.vy = 0;
 state = play;
 gameLoop();
+//Create Keyboard Controls
+
 //Left arrow key `press` method
 left.press = function() {
 
@@ -42,7 +45,6 @@ left.press = function() {
   ship.vx = -5;
   ship.vy = 0;
 };
-
 //Left arrow key `release` method
 left.release = function() {
 
@@ -53,14 +55,15 @@ left.release = function() {
     ship.vx = 0;
   }
 };
+
+//Right arrow key 'press' method
 right.press = function() {
 
   //Change the ship's velocity when the key is pressed
   ship.vx = 5;
   ship.vy = 0;
 };
-
-//Left arrow key `release` method
+//Right arrow key `release` method
 right.release = function() {
 
   //If the left arrow has been released, and the right arrow isn't down,
@@ -71,6 +74,7 @@ right.release = function() {
   }
 };
 
+//up arrow key 'press' method
 up.press = function() {
 
   //Change the ship's velocity when the key is pressed
@@ -78,7 +82,7 @@ up.press = function() {
   ship.vy = -5;
 };
 
-//Left arrow key `release` method
+//up arrow key `release` method
 up.release = function() {
 
   //If the left arrow has been released, and the right arrow isn't down,
@@ -88,14 +92,15 @@ up.release = function() {
     ship.vy = 0;
   }
 };
+
+//down arrow key 'press' method
 down.press = function() {
 
   //Change the ship's velocity when the key is pressed
   ship.vx = 0;
   ship.vy = 5;
 };
-
-//Left arrow key `release` method
+//down arrow key `release` method
 down.release = function() {
 
   //If the left arrow has been released, and the right arrow isn't down,
