@@ -1,0 +1,41 @@
+{
+	"meta": {
+		"image": "spritesheet.png",
+		"size": {"w":320,"h":238},
+		"scale": "1"
+	},
+	"frames": {
+		"alien3.png":
+		{
+			"frame": {"x":0,"y":0,"w":125,"h":238},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":125,"h":238},
+			"sourceSize": {"w":125,"h":238}
+		},
+		"smallfighter0005.png":
+		{
+			"frame": {"x":125,"y":0,"w":95,"h":151},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":95,"h":151},
+			"sourceSize": {"w":95,"h":151}
+		},
+		"SpaceShipStill.png":
+		{
+			"frame": {"x":220,"y":0,"w":100,"h":100},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
+			"sourceSize": {"w":100,"h":100}
+		},
+		"ship4.gif":
+		{
+			"frame": {"x":220,"y":100,"w":44,"h":48},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":44,"h":48},
+			"sourceSize": {"w":44,"h":48}
+		}
+	}
+}
