@@ -15,7 +15,7 @@ var left = keyboard(37),
 
 //Create a container object called the `stage` 'fleet' and define the ships
 var stage = new PIXI.Container();
-var fleet = new PIXI.Container();
+var fleet = new PIXI.particles.ParticleContainer();
 var ship, alien;
 //Tell the `renderer` to `render` the `stage`
 renderer.render(stage);
@@ -24,7 +24,7 @@ renderer.render(stage);
 loader
   .add('images/spritesheet.json')
   .load(setup);
-var state, id, player;
+var state, id, player, enemy;
 
 
 function setup(){
@@ -33,10 +33,13 @@ id = PIXI.loader.resources['images/spritesheet.json'].textures;
 ship = new Sprite(id['ship4.gif']);
 alien = new Sprite(id['alien3.png']);
 alien.position.set(150,150);
+enemy = new Sprite(id['smallfighter0005.png']);
+enemy.position.set(400,400);
 //add sprites to respective containers
 fleet.addChild(ship);
 fleet.addChild(alien);
 stage.addChild(fleet);
+stage.addChild(enemy);
 renderer.render(stage);
 //set velocity values, state, call the gameLoop.
 //player represents the current sprite or set of sprites we're moving.
@@ -132,6 +135,14 @@ function gameLoop(){
 }
 function play(){
   //Capture the keyboard arrow keys
+  if (hitTestRectangle(fleet, enemy)){
+  //message.text = "hit!";
+  alert("Hit box works!");
+  }
+  else{
+  //message.text = "No collision...";
+  }
+  
   updateShip();
 }
 function updateShip(){
