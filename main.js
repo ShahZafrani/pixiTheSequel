@@ -13,9 +13,10 @@ var left = keyboard(37),
     right = keyboard(39),
     down = keyboard(40);
 
-//Create a container object called the `stage`
+//Create a container object called the `stage` 'fleet' and define the ships
 var stage = new PIXI.Container();
-var ship;
+var fleet = new PIXI.Container();
+var ship, alien;
 //Tell the `renderer` to `render` the `stage`
 renderer.render(stage);
 
@@ -23,27 +24,36 @@ renderer.render(stage);
 loader
   .add('images/spritesheet.json')
   .load(setup);
-var state, id;
+var state, id, player;
 
 
 function setup(){
 //create sprite stuff
 id = PIXI.loader.resources['images/spritesheet.json'].textures;
 ship = new Sprite(id['ship4.gif']);
-stage.addChild(ship);
+alien = new Sprite(id['alien3.png']);
+alien.position.set(150,150);
+//add sprites to respective containers
+fleet.addChild(ship);
+fleet.addChild(alien);
+stage.addChild(fleet);
 renderer.render(stage);
-ship.vx = 0;
-ship.vy = 0;
+//set velocity values, state, call the gameLoop.
+//player represents the current sprite or set of sprites we're moving.
+player = fleet;
+player.vx = 0;
+player.vy = 0;
 state = play;
 gameLoop();
+
 //Create Keyboard Controls
 
 //Left arrow key `press` method
 left.press = function() {
 
   //Change the ship's velocity when the key is pressed
-  ship.vx = -5;
-  ship.vy = 0;
+  player.vx = -5;
+  player.vy = 0;
 };
 //Left arrow key `release` method
 left.release = function() {
@@ -51,8 +61,8 @@ left.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the ship isn't moving vertically:
   //Stop the ship
-  if (!right.isDown && ship.vy === 0) {
-    ship.vx = 0;
+  if (!right.isDown && player.vy === 0) {
+    player.vx = 0;
   }
 };
 
@@ -60,8 +70,8 @@ left.release = function() {
 right.press = function() {
 
   //Change the ship's velocity when the key is pressed
-  ship.vx = 5;
-  ship.vy = 0;
+  player.vx = 5;
+  player.vy = 0;
 };
 //Right arrow key `release` method
 right.release = function() {
@@ -69,8 +79,8 @@ right.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the ship isn't moving vertically:
   //Stop the ship
-  if (!left.isDown && ship.vy === 0) {
-    ship.vx = 0;
+  if (!left.isDown && player.vy === 0) {
+    player.vx = 0;
   }
 };
 
@@ -78,8 +88,8 @@ right.release = function() {
 up.press = function() {
 
   //Change the ship's velocity when the key is pressed
-  ship.vx = 0;
-  ship.vy = -5;
+  player.vx = 0;
+  player.vy = -5;
 };
 
 //up arrow key `release` method
@@ -88,8 +98,8 @@ up.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the ship isn't moving vertically:
   //Stop the ship
-  if (!down.isDown && ship.vx === 0) {
-    ship.vy = 0;
+  if (!down.isDown && player.vx === 0) {
+    player.vy = 0;
   }
 };
 
@@ -97,8 +107,8 @@ up.release = function() {
 down.press = function() {
 
   //Change the ship's velocity when the key is pressed
-  ship.vx = 0;
-  ship.vy = 5;
+  player.vx = 0;
+  player.vy = 5;
 };
 //down arrow key `release` method
 down.release = function() {
@@ -106,8 +116,8 @@ down.release = function() {
   //If the left arrow has been released, and the right arrow isn't down,
   //and the ship isn't moving vertically:
   //Stop the ship
-  if (!up.isDown && ship.vx === 0) {
-    ship.vy = 0;
+  if (!up.isDown && player.vx === 0) {
+    player.vy = 0;
   }
 };
 }
@@ -128,7 +138,7 @@ function updateShip(){
   updateShipPosition();
 }
 function updateShipPosition(){
-  ship.x += ship.vx;
-  ship.y += ship.vy;
+  player.x += player.vx;
+  player.y += player.vy;
 }
 //dummy line for testing
