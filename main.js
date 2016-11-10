@@ -5,6 +5,7 @@ var renderer = PIXI.autoDetectRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 var loader = PIXI.loader;
 var resources = PIXI.loader.resources;
 var Sprite = PIXI.Sprite;
+var text = PIXI.Text;
 //Add the canvas to the HTML document
 document.body.appendChild(renderer.view);
 //Capture the keyboard arrow keys
@@ -24,7 +25,7 @@ renderer.render(stage);
 loader
   .add('images/spritesheet.json')
   .load(setup);
-var state, id, player, enemy;
+var state, id, player, enemy, message;
 
 
 function setup(){
@@ -35,11 +36,17 @@ alien = new Sprite(id['alien3.png']);
 alien.position.set(150,150);
 enemy = new Sprite(id['smallfighter0005.png']);
 enemy.position.set(400,400);
+//create text object for testing hitbox
+message = new text(
+  "No hit",
+  {font: "32px sans-serif", fill: "white"}
+);
 //add sprites to respective containers
 fleet.addChild(ship);
 fleet.addChild(alien);
 stage.addChild(fleet);
 stage.addChild(enemy);
+stage.addChild(message);
 renderer.render(stage);
 //set velocity values, state, call the gameLoop.
 //player represents the current sprite or set of sprites we're moving.
@@ -136,11 +143,10 @@ function gameLoop(){
 function play(){
   //Capture the keyboard arrow keys
   if (hitTestRectangle(fleet, enemy)){
-  //message.text = "hit!";
-  alert("Hit box works!");
+  message.text = "hit!";
   }
   else{
-  //message.text = "No collision...";
+  message.text = "No hit";
   }
   
   updateShip();
