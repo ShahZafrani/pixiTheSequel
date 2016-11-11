@@ -18,24 +18,36 @@ var left = keyboard(37),
 var stage = new PIXI.Container();
 var fleet = new PIXI.particles.ParticleContainer();
 var ship, alien;
-//Tell the `renderer` to `render` the `stage`
-renderer.render(stage);
 
 //state
 loader
   .add('images/spritesheet.json')
   .load(setup);
-var state, id, player, enemy, message;
+var state, id, player, enemy, message, enemy2;
 
-
+//Constructor for random enemy spawner
+function randomSpawner(spriteName, quantity, spacing, xOffset){
+  for (var i = 0; i < quantity; i++){
+    var thisSprite = new Sprite(id[spriteName]);
+    var x = spacing * i + xOffset;
+    var y = randomInt(0, 700);
+    thisSprite.x = x;
+    thisSprite.y = y;
+    stage.addChild(thisSprite);
+    alert("Sprite" + i + " added!")
+}
+};
 function setup(){
 //create sprite stuff
 id = PIXI.loader.resources['images/spritesheet.json'].textures;
 ship = new Sprite(id['ship4.gif']);
 alien = new Sprite(id['alien3.png']);
-alien.position.set(150,150);
+alien.position.set(300,300);
+alien.anchor.set(1,1);
 enemy = new Sprite(id['smallfighter0005.png']);
 enemy.position.set(400,400);
+//create random enemy2 spawns
+randomSpawner('SpaceShipStill.png', 3, 150, 100);
 //create text object for testing hitbox
 message = new text(
   "No hit",
@@ -158,4 +170,3 @@ function updateShipPosition(){
   player.x += player.vx;
   player.y += player.vy;
 }
-//dummy line for testing
