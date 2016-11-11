@@ -26,15 +26,14 @@ loader
 var state, id, player, enemy, message, enemy2;
 
 //Constructor for random enemy spawner
-function randomSpawner(spriteName, quantity, spacing, xOffset){
+function randomSpawner(spriteFileName, quantity, spacing, xOffset){
   for (var i = 0; i < quantity; i++){
-    var thisSprite = new Sprite(id[spriteName]);
+    var thisSprite = new Sprite(id[spriteFileName]);
     var x = spacing * i + xOffset;
-    var y = randomInt(0, 700);
+    var y = randomInt(0, SCREEN_HEIGHT - thisSprite.height);
     thisSprite.x = x;
     thisSprite.y = y;
     stage.addChild(thisSprite);
-    alert("Sprite" + i + " added!")
 }
 };
 function setup(){
