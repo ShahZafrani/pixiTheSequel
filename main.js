@@ -23,7 +23,7 @@ var ship, alien;
 loader
   .add('images/spritesheet.json')
   .load(setup);
-var state, id, player, enemy, message, enemy2;
+var state, id, player, enemy, message, enemy2, movie;
 
 //Constructor for random enemy spawner
 function randomSpawner(spriteFileName, quantity, spacing, xOffset){
@@ -36,6 +36,22 @@ function randomSpawner(spriteFileName, quantity, spacing, xOffset){
     stage.addChild(thisSprite);
 }
 };
+//Constructor for Frame Animated sprite
+function movieClip(fileName, frameCount){
+  var frames = [];
+  var val
+  for(var i = 0; i < frameCount; i++){
+    if(i < 10){ 
+      val = '0' + 1;
+    }
+    else {
+      val = i;
+    }
+    frames.push(PIXI.Texture.fromFrame(fileName + val + '.png'));
+}
+   movie = new PIXI.extras.MovieClip(frames);
+};
+
 function setup(){
 //create sprite stuff
 id = PIXI.loader.resources['images/spritesheet.json'].textures;
@@ -45,6 +61,10 @@ alien.position.set(300,300);
 alien.anchor.set(1,1);
 enemy = new Sprite(id['smallfighter0005.png']);
 enemy.position.set(400,400);
+//create an animated sprite
+movieClip('filename', 30);
+movie.position.set(200, 150);
+movie.animationSpeed = 0.5;
 //create random enemy2 spawns
 randomSpawner('SpaceShipStill.png', 3, 150, 100);
 //create text object for testing hitbox
@@ -57,6 +77,7 @@ fleet.addChild(ship);
 fleet.addChild(alien);
 stage.addChild(fleet);
 stage.addChild(enemy);
+stage.addChild(movie);
 stage.addChild(message);
 renderer.render(stage);
 //set velocity values, state, call the gameLoop.
