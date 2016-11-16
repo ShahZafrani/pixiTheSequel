@@ -1,0 +1,25 @@
+{
+	"meta": {
+		"image": "animation.png",
+		"size": {"w":444,"h":159},
+		"scale": "1"
+	},
+	"frames": {
+		"bigCruiser00.png":
+		{
+			"frame": {"x":0,"y":0,"w":222,"h":159},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":222,"h":159},
+			"sourceSize": {"w":222,"h":159}
+		},
+		"bigCruiser01.png":
+		{
+			"frame": {"x":222,"y":0,"w":222,"h":159},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":222,"h":159},
+			"sourceSize": {"w":222,"h":159}
+		}
+	}
+}

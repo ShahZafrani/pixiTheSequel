@@ -22,6 +22,7 @@ var ship, alien;
 //state
 loader
   .add('images/spritesheet.json')
+  .add('images/animation.json')
   .load(setup);
 var state, id, player, enemy, message, enemy2, movie;
 
@@ -37,12 +38,12 @@ function randomSpawner(spriteFileName, quantity, spacing, xOffset){
 }
 };
 //Constructor for Frame Animated sprite
-function movieClip(fileName, frameCount){
+function movieClip(fileName){
   var frames = [];
   var val
-  for(var i = 0; i < frameCount; i++){
+  for(var i = 0; i < 2; i++){
     if(i < 10){ 
-      val = '0' + 1;
+      val = '0' + i;
     }
     else {
       val = i;
@@ -62,9 +63,11 @@ alien.anchor.set(1,1);
 enemy = new Sprite(id['smallfighter0005.png']);
 enemy.position.set(400,400);
 //create an animated sprite
-movieClip('filename', 30);
+movieClip('bigCruiser');
+movie.loop = true;
 movie.position.set(200, 150);
 movie.animationSpeed = 0.5;
+movie.play();
 //create random enemy2 spawns
 randomSpawner('SpaceShipStill.png', 3, 150, 100);
 //create text object for testing hitbox
